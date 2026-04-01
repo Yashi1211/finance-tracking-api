@@ -19,20 +19,6 @@ uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 
 Copy `.env.example` to `.env` to override `DATABASE_URL` or `SECRET_KEY`.
 
-## Deploy on Render (free live URL)
-
-Render par login **tumhari** ID se karna hoga — hum tumhari jagah account open nahi kar sakte. Repo mein `render.yaml` hai taaki setup fast ho.
-
-1. Code push ho chuka ho: [GitHub repo](https://github.com/Yashi1211/finance-tracking-api) (ya apna fork).
-2. [dashboard.render.com](https://dashboard.render.com) → sign up / log in (GitHub se connect).
-3. **New +** → **Blueprint** → Connect repository → `Yashi1211/finance-tracking-api` chuno → branch **main**.
-4. Render `render.yaml` read karega → **Apply** / **Create resources**.
-5. Deploy complete hone ke baad upar **URL** dikhega, jaise `https://finance-tracking-api-xxxx.onrender.com`.
-   - **API docs (Swagger):** `https://<woh-url>/docs`
-   - **Health:** `https://<woh-url>/health`
-
-**Note (free tier):** service ~15 min idle ke baad sleep ho sakti hai; pehli request 30–60 sec slow ho sakti hai. SQLite file deploy/restart par reset ho sakti hai — demo ke liye OK; production ke liye Render PostgreSQL + `DATABASE_URL` add karo.
-
 ## Auth
 
 1. **JWT (recommended)**  
