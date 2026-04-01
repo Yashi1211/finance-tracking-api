@@ -1,5 +1,10 @@
 # Render Blueprint — https://render.com/docs/blueprint-spec
 # After push: Dashboard → New → Blueprint → connect this repo → apply.
+#
+# Live deployment (this service):
+#   https://finance-tracking-api.onrender.com
+#   Docs: https://finance-tracking-api.onrender.com/docs
+#   Health: https://finance-tracking-api.onrender.com/health
 
 services:
   - type: web
