@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finance Tracker</title>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        background: #0f1419;
+        color: #e7e9ea;
+      }
+      body {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 1.25rem;
+      }
+      h1 {
+        font-size: 1.35rem;
+      }
+      section {
+        background: #1a2332;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+      label {
+        display: block;
+        margin: 0.5rem 0 0.2rem;
+        font-size: 0.85rem;
+        color: #8b98a5;
+      }
+      input,
+      select,
+      button {
+        padding: 0.45rem 0.6rem;
+        border-radius: 6px;
+        border: 1px solid #38444d;
+        background: #15202b;
+        color: inherit;
+      }
+      button {
+        cursor: pointer;
+        margin-top: 0.6rem;
+        margin-right: 0.5rem;
+        background: #1d9bf0;
+        border-color: #1d9bf0;
+        color: #fff;
+      }
+      button.secondary {
+        background: transparent;
+        color: #1d9bf0;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: flex-end;
+      }
+      .row > div {
+        flex: 1;
+        min-width: 120px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.88rem;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.4rem;
+        border-bottom: 1px solid #38444d;
+      }
+      .err {
+        color: #f4212e;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+      }
+      .muted {
+        color: #8b98a5;
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Finance tracker</h1>
+    <p class="muted">
+      Dev: run API on :8000 and <code>npm run dev</code>. Production build is served at
+      <code>/ui/</code> on the API server.
+    </p>
+
+    <section>
+      <h2>Account</h2>
+      <div class="row">
+        <div>
+          <label>Username</label>
+          <input id="username" autocomplete="username" />
+        </div>
+        <div>
+          <label>Password</label>
+          <input id="password" type="password" autocomplete="current-password" />
+        </div>
+        <div>
+          <label>Role (register)</label>
+          <select id="role">
+            <option value="viewer">viewer</option>
+            <option value="analyst">analyst</option>
+            <option value="admin" selected>admin</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" id="btnReg">Register</button>
+      <button type="button" id="btnLogin" class="secondary">Login</button>
+      <button type="button" id="btnLogout" class="secondary">Logout</button>
+      <div id="authErr" class="err"></div>
+    </section>
+
+    <section>
+      <h2>Add transaction</h2>
+      <div class="row">
+        <div>
+          <label>Amount</label>
+          <input id="amt" type="number" step="0.01" min="0.01" />
+        </div>
+        <div>
+          <label>Type</label>
+          <select id="typ">
+            <option value="income">income</option>
+            <option value="expense">expense</option>
+          </select>
+        </div>
+        <div>
+          <label>Category</label>
+          <input id="cat" />
+        </div>
+        <div>
+          <label>Date</label>
+          <input id="dt" type="date" />
+        </div>
+      </div>
+      <label>Note</label>
+      <input id="note" style="width: 100%; max-width: 400px" />
+      <br />
+      <button type="button" id="btnAdd">Add</button>
+      <div id="addErr" class="err"></div>
+    </section>
+
+    <section>
+      <h2>Transactions <span class="muted" id="totalLbl"></span></h2>
+      <button type="button" id="btnRefresh">Refresh list</button>
+      <div id="listErr" class="err"></div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Summary</h2>
+      <button type="button" id="btnSumV">Viewer totals</button>
+      <button type="button" id="btnSumA" class="secondary">Full summary (analyst+)</button>
+      <pre id="sumOut" style="white-space: pre-wrap; font-size: 0.85rem"></pre>
+      <div id="sumErr" class="err"></div>
+    </section>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
